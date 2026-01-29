@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aztec Treasures - Live Game Show</title>
+    <title>กงล้อท้ารวย - Lucky Wheel</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Prompt:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Prompt:wght@400;700;900&family=Kanit:wght@700;900&display=swap');
 
         * {
             margin: 0;
@@ -278,8 +278,9 @@
         }
 
         .main-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 38px;
+            font-family: 'Kanit', 'Russo One', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
             color: #00e5ff;
             text-shadow: 
                 0 0 10px #00e5ff,
@@ -287,7 +288,7 @@
                 0 0 40px #00b8d4,
                 0 0 80px #0088a3,
                 0 4px 0 #006080;
-            letter-spacing: 5px;
+            letter-spacing: 8px;
             animation: titleGlow 2s ease-in-out infinite alternate;
         }
 
@@ -416,10 +417,10 @@
 
         .wheel-frame {
             position: relative;
-            width: 340px;
-            height: 340px;
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
-            padding: 18px;
+            padding: 20px;
             background: linear-gradient(135deg, #00d4ff, #0099cc, #00d4ff);
             box-shadow: 
                 0 0 50px rgba(0, 212, 255, 0.7),
@@ -454,8 +455,8 @@
         }
 
         .wheel {
-            width: 304px;
-            height: 304px;
+            width: 380px;
+            height: 380px;
             border-radius: 50%;
             position: relative;
             transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
@@ -478,15 +479,15 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 75px;
-            height: 75px;
+            width: 85px;
+            height: 85px;
             background: linear-gradient(145deg, #fff, #e0e0e0);
             border-radius: 50%;
             border: 5px solid #00d4ff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 38px;
+            font-size: 42px;
             box-shadow: 
                 0 0 30px rgba(0, 212, 255, 0.8),
                 inset 0 0 20px rgba(0, 0, 0, 0.1);
@@ -495,12 +496,12 @@
 
         .wheel-item {
             position: absolute;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 46px;
             filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.5));
         }
 
@@ -515,15 +516,20 @@
             transform-origin: left center;
         }
 
-        /* Position emojis - adjusted for 304px wheel */
-        .wheel-item:nth-child(5) { top: 32px; left: 152px; transform: translateX(-50%); }
-        .wheel-item:nth-child(6) { top: 75px; left: 218px; }
-        .wheel-item:nth-child(7) { top: 152px; left: 218px; transform: translateY(-50%); }
-        .wheel-item:nth-child(8) { top: 218px; left: 180px; }
-        .wheel-item:nth-child(9) { top: 218px; left: 95px; }
-        .wheel-item:nth-child(10) { top: 152px; left: 32px; transform: translateY(-50%); }
-        .wheel-item:nth-child(11) { top: 75px; left: 32px; }
-        .wheel-item:nth-child(12) { top: 32px; left: 95px; }
+        /* 
+         * Position emojis at center of each segment
+         * Wheel: 380x380px, center at 190,190
+         * Emoji radius from center: 125px
+         * Using: x = 190 + 125*sin(angle) - 30, y = 190 - 125*cos(angle) - 30
+         */
+        .wheel-item:nth-child(5) { top: 45px; left: 190px; transform: translateX(-50%); }  /* 22.5° - top */
+        .wheel-item:nth-child(6) { top: 95px; left: 285px; transform: translate(-50%, -50%); }  /* 67.5° */
+        .wheel-item:nth-child(7) { top: 190px; left: 310px; transform: translate(-50%, -50%); }  /* 112.5° */
+        .wheel-item:nth-child(8) { top: 280px; left: 260px; transform: translate(-50%, -50%); }  /* 157.5° */
+        .wheel-item:nth-child(9) { top: 305px; left: 190px; transform: translateX(-50%); }  /* 202.5° - bottom */
+        .wheel-item:nth-child(10) { top: 280px; left: 95px; transform: translate(-50%, -50%); }  /* 247.5° */
+        .wheel-item:nth-child(11) { top: 190px; left: 45px; transform: translate(-50%, -50%); }  /* 292.5° */
+        .wheel-item:nth-child(12) { top: 95px; left: 95px; transform: translate(-50%, -50%); }  /* 337.5° */
 
         /* Wheel Pointer */
         .wheel-pointer {
@@ -731,12 +737,21 @@
         /* Responsive */
         @media (max-width: 768px) {
             .stadium-lights { display: none; }
-            .wheel-frame { width: 300px; height: 300px; }
-            .wheel { width: 264px; height: 264px; }
+            .wheel-frame { width: 340px; height: 340px; }
+            .wheel { width: 300px; height: 300px; }
             .main-title { font-size: 28px; letter-spacing: 3px; }
             .sub-title { font-size: 12px; letter-spacing: 6px; }
             .slot-item { width: 75px; height: 75px; font-size: 45px; }
             .spin-btn { padding: 16px 60px; font-size: 22px; }
+            .wheel-item { font-size: 36px; }
+            .wheel-item:nth-child(5) { top: 35px; left: 150px; }
+            .wheel-item:nth-child(6) { top: 75px; left: 230px; }
+            .wheel-item:nth-child(7) { top: 150px; left: 250px; }
+            .wheel-item:nth-child(8) { top: 225px; left: 210px; }
+            .wheel-item:nth-child(9) { top: 245px; left: 150px; }
+            .wheel-item:nth-child(10) { top: 225px; left: 75px; }
+            .wheel-item:nth-child(11) { top: 150px; left: 35px; }
+            .wheel-item:nth-child(12) { top: 75px; left: 75px; }
         }
     </style>
 </head>
@@ -816,8 +831,8 @@
     <div class="container">
         <!-- Title -->
         <div class="title-section">
-            <h1 class="main-title">AZTEC TREASURES</h1>
-            <div class="sub-title">LIVE GAME SHOW</div>
+            <h1 class="main-title">กงล้อท้ารวย</h1>
+            <div class="sub-title">LUCKY WHEEL</div>
         </div>
 
         <!-- Spin Counter -->
